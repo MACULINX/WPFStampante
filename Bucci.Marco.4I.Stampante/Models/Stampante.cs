@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bucci.Marco._4I.Stampante.Models
 {
-    internal class Stampante
+    public class Stampante
     {
         public int B { get; set; }
         public int Y { get; set; }
@@ -21,14 +21,29 @@ namespace Bucci.Marco._4I.Stampante.Models
             Fogli = 200;
         }
 
-        public void SostituisiciColore(IEnumerable C)
+        public void SostituisiciColore(string s)
         {
 
         }
 
-        public int StatoInchiostro(IEnumerable C)
+        public int StatoInchiostro(string i)
         {
-            return ;
+            switch (i)
+            {
+                case "cyan":
+                    return C;
+
+                case "magenta":
+                    return M;
+                    
+                case "yellow":
+                    return Y;
+
+                case "black":
+                    return B;
+
+            }
+            return 0;
         }
         public int StatoCarta()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bucci.Marco._4I.Stampante.Models
 {
-    internal class Pagina
+    public class Pagina
     {
         public int B { get ; set; }
         public int Y { get ; set; }

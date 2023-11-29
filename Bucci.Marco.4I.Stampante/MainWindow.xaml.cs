@@ -20,9 +20,35 @@ namespace Bucci.Marco._4I.Stampante
     /// </summary>
     public partial class MainWindow : Window
     {
+        Models.Stampante stampante = new();
+
         public MainWindow()
         {
+
             InitializeComponent();
+        }
+
+        private void cyan_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((stampante.StatoInchiostro("cyan").ToString()));
+        }
+
+        private void magenta_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((stampante.StatoInchiostro("magenta").ToString()));
+
+        }
+
+        private void yellow_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((stampante.StatoInchiostro("yellow").ToString()));
+
+        }
+
+        private void black_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((stampante.StatoInchiostro("black").ToString()));
+
         }
     }
 }

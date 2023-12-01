@@ -30,7 +30,7 @@ L'interfaccia utente è rappresentata dalla classe `MainWindow`. La finestra con
 
 ## Diagramma UML
 
-Il diagramma UML con le relazioni tra le classi è disponibile nel repository [WPFStampante_UML](link_al_diagramma_UML).
+Il diagramma UML con le relazioni tra le classi è disponibile nel repository [WPFStampante_UML](https://raw.githubusercontent.com/MACULINX/WPFStampante/master/StampanteWPF_UML.png).
 
 ## Requisiti
 

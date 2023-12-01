@@ -5,33 +5,119 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bucci.Marco._4I.Stampante"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
-    
-    
-    
+        Title="WPFStampante" Height="720" Width="1280"
+        FontFamily="Verdana"
+        ResizeMode="NoResize">
+
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="cyan" Grid.Column="0" Grid.Row="1" Background="Cyan" Click="cyan_Click"/>
-        <Button x:Name="magenta" Grid.Column="1" Grid.Row="1" Background="Magenta" Click="magenta_Click"/>
-        <Button x:Name="yellow" Grid.Column="2" Grid.Row="1" Background="Yellow" Click="yellow_Click"/>
-        <Button x:Name="black" Grid.Column="3" Grid.Row="1" Background="Black" Click="black_Click"/>
+        <!--Risultato stampa-->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="0">
+            <TextBlock x:Name="statusPrint"  FontSize="20"  TextAlignment="Center"  Background="NavajoWhite" Foreground="Black">
+            <LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/>
+            RISULTATO STAMPA
+            </TextBlock>
+        </Border>
 
 
+        <!--Informazioni sulle risorse-->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="0">
+            <TextBlock x:Name="resources"  FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">
+                Livello inchiostro: <LineBreak/><LineBreak/>
+                Ciano 100% <LineBreak/>
+                Magenta 100% <LineBreak/>
+                Giallo 100% <LineBreak/>
+                Nero 100% <LineBreak/><LineBreak/><LineBreak/>
+                Nel cassetto ci sono 200/200 fogli
+            </TextBlock>
+        </Border>
+
+
+        <!--Risorse della stampante-->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="1" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Carica Carta-->
+                <Grid Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Click="paper_Click">CARICA CARTA</Button>
+
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="0,12,0,11">Quantita' carta:</TextBlock>
+                    <TextBox x:Name="qtaPaper" Grid.Column="1" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,35,0,0"/>
+                </Grid>
+                <!--Cambio cartucce-->
+                <Button x:Name="cyan" Grid.Column="0" Grid.Row="1" Background="Cyan" Click="cyan_Click" Foreground="Black" >CAMBIA CIANO</Button>
+                <Button x:Name="magenta" Grid.Column="1" Grid.Row="1" Background="Magenta" Click="magenta_Click" Foreground="Black" >CAMBIA MAGENTA</Button>
+                <Button x:Name="yellow" Grid.Column="0" Grid.Row="2" Background="Yellow" Click="yellow_Click" Foreground="Black" >CAMBIA GIALLO</Button>
+                <Button x:Name="black" Grid.Column="1" Grid.Row="2" Background="Black" Click="black_Click" Foreground="White" >CAMBIA NERO</Button>
+            </Grid>
+        </Border>
+
+
+        <!--Stampa foglio-->
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!--Stampa foglio generato random-->
+                <Button Click="test_Click" Grid.ColumnSpan="2">TEST DI STAMPA</Button>
+                <!--Stampa foglio specificato dall'utente-->
+                <Button Click="print_Click" Grid.Row="1">STAMPA FOGLIO</Button>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="0">Ciano:</TextBlock>
+                    <TextBox x:Name="qtaCyan" Grid.Row="0" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="1">Magenta:</TextBlock>
+                    <TextBox x:Name="qtaMagenta" Grid.Row="1" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="2">Giallo:</TextBlock>
+                    <TextBox x:Name="qtaYellow" Grid.Row="2" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" Grid.Row="3">Nero:</TextBlock>
+                    <TextBox x:Name="qtaBlack" Grid.Row="3" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
+                </Grid>
+            </Grid>
+        </Border>
 
 
 
     </Grid>
+
 </Window>

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Bucci.Marco._4I.Stampante"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
+
 </Application>

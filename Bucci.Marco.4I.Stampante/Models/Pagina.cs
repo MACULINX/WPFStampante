@@ -16,7 +16,7 @@ namespace Bucci.Marco._4I.Stampante.Models
         public Pagina(int c, int m, int y, int b)
         {
             if (c > 3 || m > 3 || y > 3 || b > 3)
-                throw new ArgumentException("Troppo inchiostro");
+                throw new ArgumentException("Il foglio richiede troppo inchiostro");
 
             C = c;
             M = m;

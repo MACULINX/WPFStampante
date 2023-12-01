@@ -8,10 +8,11 @@ namespace Bucci.Marco._4I.Stampante.Models
 {
     public class Stampante
     {
-        public int B { get; set; }
-        public int Y { get; set; }
-        public int M { get; set; }
         public int C { get; set; }
+        public int M { get; set; }
+        public int Y { get; set; }
+        public int B { get; set; }
+
         public int Fogli { get; set; }
 
         public Stampante()
@@ -23,12 +24,31 @@ namespace Bucci.Marco._4I.Stampante.Models
 
         public void SostituisiciColore(string s)
         {
+            switch (s)
+            {
+                case "cyan":
+                    C = 100;
+                    return;
+
+                case "magenta":
+                    M = 100;
+                    return;
+
+                case "yellow":
+                    Y = 100;
+                    return;
+
+                case "black":
+                    B = 100;
+                    return;
+
+            }
 
         }
 
-        public int StatoInchiostro(string i)
+        public int StatoInchiostro(string s)
         {
-            switch (i)
+            switch (s)
             {
                 case "cyan":
                     return C;
@@ -51,6 +71,8 @@ namespace Bucci.Marco._4I.Stampante.Models
         }
         public void AggiungiCarta(int qta)
         {
+            if (qta < 0) qta = 0;  
+            
             Fogli += qta;
 
             if (Fogli > 200) Fogli = 200;

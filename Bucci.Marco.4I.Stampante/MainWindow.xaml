@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="WPFStampante" Height="720" Width="1280"
         FontFamily="Verdana"
-        ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
 
 
     <Grid>
@@ -66,8 +67,30 @@
 
                     <Button Click="paper_Click">CARICA CARTA</Button>
 
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Margin="0,12,0,11">Quantita' carta:</TextBlock>
-                    <TextBox x:Name="qtaPaper" Grid.Column="1" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,35,0,0"/>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Diminuzione inchiostro-->
+                        <Button Grid.RowSpan="2" Content="-" FontSize="32" Click="PaperMinus_Click"/>
+
+                        <!--Nome e Quantita'-->
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="1" FontSize="14">Quantita' carta:</TextBlock>
+                        <TextBox x:Name="qtaPaper" Grid.Row="1" Grid.Column="1" InputScope="Number" Text="0" TextAlignment="Center" FontSize="32" BorderThickness="0"/>
+
+                        <!--Aumento inchiostro-->
+                        <Button Grid.RowSpan="2" Grid.Column="2" Content="+" FontSize="32" Click="PaperAdd_Click"/>
+
+                    </Grid>
+
                 </Grid>
                 <!--Cambio cartucce-->
                 <Button x:Name="cyan" Grid.Column="0" Grid.Row="1" Background="Cyan" Click="cyan_Click" Foreground="Black" >CAMBIA CIANO</Button>
@@ -88,15 +111,15 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
 
                 <!--Stampa foglio generato random-->
-                <Button Click="test_Click" Grid.ColumnSpan="2">TEST DI STAMPA</Button>
+                <Button Click="test_Click">Genera foglio</Button>
                 <!--Stampa foglio specificato dall'utente-->
-                <Button Click="print_Click" Grid.Row="1">STAMPA FOGLIO</Button>
+                <Button Click="print_Click" Grid.Column="1">Stampa foglio</Button>
 
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -104,14 +127,106 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock HorizontalAlignment="Center" Grid.Row="0">Ciano:</TextBlock>
-                    <TextBox x:Name="qtaCyan" Grid.Row="0" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
-                    <TextBlock HorizontalAlignment="Center" Grid.Row="1">Magenta:</TextBlock>
-                    <TextBox x:Name="qtaMagenta" Grid.Row="1" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
-                    <TextBlock HorizontalAlignment="Center" Grid.Row="2">Giallo:</TextBlock>
-                    <TextBox x:Name="qtaYellow" Grid.Row="2" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
-                    <TextBlock HorizontalAlignment="Center" Grid.Row="3">Nero:</TextBlock>
-                    <TextBox x:Name="qtaBlack" Grid.Row="3" InputScope="Number" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="193" Text="0" Margin="0,16,0,0"/>
+                    <!--Cyan-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Diminuzione inchiostro-->
+                        <Button Grid.RowSpan="2" Content="-" FontSize="32" Click="CyanMinus_Click"/>
+
+                        <!--Nome e Quantita'-->
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="1" FontSize="16">Ciano:</TextBlock>
+                        <TextBox x:Name="qtaCyan" Grid.Row="1" Grid.Column="1" InputScope="Number" Text="0" TextAlignment="Center" FontSize="32" BorderThickness="0" IsEnabled="False" />
+
+                        <!--Aumento inchiostro-->
+                        <Button Grid.RowSpan="2" Grid.Column="2" Content="+" FontSize="32" Click="CyanAdd_Click"/>
+
+
+                    </Grid>
+                    
+                    <!--Magenta-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Diminuzione inchiostro-->
+                        <Button Grid.RowSpan="2" Content="-" FontSize="32" Click="MagentaMinus_Click"/>
+
+                        <!--Nome e Quantita'-->
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="1" FontSize="16">Magenta:</TextBlock>
+                        <TextBox x:Name="qtaMagenta" Grid.Row="1" Grid.Column="1" InputScope="Number" Text="0" TextAlignment="Center" FontSize="32" BorderThickness="0" IsEnabled="False"/>
+
+                        <!--Aumento inchiostro-->
+                        <Button Grid.RowSpan="2" Grid.Column="2" Content="+" FontSize="32" Click="MagentaAdd_Click"/>
+
+                    </Grid>
+
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Diminuzione inchiostro-->
+                        <Button Grid.RowSpan="2" Content="-" FontSize="32" Click="YellowMinus_Click"/>
+
+                        <!--Nome e Quantita-->
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="1" FontSize="16">Giallo:</TextBlock>
+                        <TextBox x:Name="qtaYellow" Grid.Row="1" Grid.Column="1" InputScope="Number" Text="0" TextAlignment="Center" FontSize="32" BorderThickness="0" IsEnabled="False"/>
+
+                        <!--Aumento inchiostro-->
+                        <Button Grid.RowSpan="2" Grid.Column="2" Content="+" FontSize="32" Click="YellowAdd_Click"/>
+
+
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Diminuzione inchiostro-->
+                        <Button Grid.RowSpan="2" Content="-" FontSize="32" Click="BlackMinus_Click"/>
+
+                        <!--Nome e Quantita'-->
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="1" FontSize="16">Nero:</TextBlock>
+                        <TextBox x:Name="qtaBlack" Grid.Row="1" Grid.Column="1" InputScope="Number" Text="0" TextAlignment="Center" FontSize="32" BorderThickness="0" IsEnabled="False"/>
+
+                        <!--Aumento inchiostro-->
+                        <Button Grid.RowSpan="2" Grid.Column="2" Content="+" FontSize="32" Click="BlackAdd_Click"/>
+
+                    </Grid>
+
                 </Grid>
             </Grid>
         </Border>

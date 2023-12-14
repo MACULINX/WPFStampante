@@ -8,30 +8,83 @@ namespace Bucci.Marco._4I.Stampante.Models
 {
     public class Pagina
     {
-        public int B { get ; set; }
-        public int Y { get ; set; }
-        public int M { get; set; }
-        public int C { get; set; }
+        private int c;
+        private int m;
+        private int y;
+        private int k;
 
-        public Pagina(int c, int m, int y, int b)
+        public int C
         {
-            if (c > 3 || m > 3 || y > 3 || b > 3)
-                throw new ArgumentException("Il foglio richiede troppo inchiostro");
+            get
+            {
+                return c;
+            }
+            set
+            {
+                if (value >= MAX || value < 0)
+                    throw new ArgumentOutOfRangeException($"Il valore inserito non e' consentito \n (il valore deve essere compreso tra 0 e {MAX - 1})");
+                c = value;
+            }
+        }
+        public int M
+        {
+            get
+            {
+                return m;
+            }
+            set
+            {
+                if (value >= MAX || value < 0)
+                    throw new ArgumentOutOfRangeException($"Il valore inserito non e' consentito \n (il valore deve essere compreso tra 0 e {MAX - 1})");
+                m = value;
+            }
+        }
+        public int Y
+        {
+            get
+            {
+                return y;
+            }
+            set
+            {
+                if (value >= MAX || value < 0)
+                    throw new ArgumentOutOfRangeException($"Il valore inserito non e' consentito \n (il valore deve essere compreso tra 0 e {MAX - 1})");
+                y = value;
+            }
+        }
+        public int K
+        {
+            get
+            {
+                return k;
+            }
+            set
+            {
+                if (value >= MAX || value < 0)
+                    throw new ArgumentOutOfRangeException($"Il valore inserito non e' consentito \n (il valore deve essere compreso tra 0 e {MAX - 1})");
+                k = value;
+            }
+        }
 
+
+        private const int MAX = 4;
+
+        public Pagina(int c, int m, int y, int k)
+        {
             C = c;
             M = m;
             Y = y;
-            B = b;
+            K = k;
         }
 
         public Pagina()
         {
             var r = new Random();
 
-            C = r.Next(4);
-            M = r.Next(4);
-            Y = r.Next(4);
-            B = r.Next(4);
+            C = r.Next(MAX);
+            M = r.Next(MAX);
+            Y = r.Next(MAX);
+            K = r.Next(MAX);
         }
     }
 }

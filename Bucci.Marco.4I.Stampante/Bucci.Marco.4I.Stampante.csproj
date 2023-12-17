@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="saves.txt" />
+    <None Remove="saves.csv" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="saves.txt">
+    <EmbeddedResource Include="saves.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

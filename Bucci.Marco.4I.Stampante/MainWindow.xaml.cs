@@ -254,14 +254,14 @@ namespace Bucci.Marco._4I.Stampante
 
         private void SaveStatus()
         {
-            using (StreamWriter sw = new StreamWriter("saves.txt"))
+            using (StreamWriter sw = new StreamWriter("saves.csv"))
             {
                 sw.Write(stampante.ToString());
             }
         }
         private void LoadStatus()
         {
-            using (StreamReader sr = new StreamReader("saves.txt"))
+            using (StreamReader sr = new StreamReader("saves.csv"))
             {
                 string s = sr.ReadToEnd();
 

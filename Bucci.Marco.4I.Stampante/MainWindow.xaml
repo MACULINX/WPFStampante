@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bucci.Marco._4I.Stampante"
         mc:Ignorable="d"
-        Title="WPFStampante" Height="720" Width="1280"
+        Title="WPFStampante" MinHeight="720" MinWidth="1280"
         FontFamily="Verdana"
         WindowStartupLocation="CenterScreen"
         Closing="Window_Closing">
